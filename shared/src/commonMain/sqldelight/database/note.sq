@@ -1,0 +1,30 @@
+CREATE TABLE NoteEntity(
+    Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    Title TEXT NOT NULL,
+    Content TEXT NOT NULL,
+    ColorHex INTEGER NOT NULL,
+    CreatedAt INTEGER NOT NULL
+);
+
+getAllNotes:
+SELECT *
+FROM NoteEntity;
+
+getNote:
+SELECT *
+FROM NoteEntity
+WHERE Id = ?;
+
+insertNote:
+INSERT OR REPLACE
+INTO NoteEntity(
+    Id,
+    Title,
+    Content,
+    ColorHex,
+    CreatedAt
+) VALUES(?, ?, ?, ?, ?);
+
+deleteNote:
+DELETE FROM NoteEntity
+WHERE Id = ?;

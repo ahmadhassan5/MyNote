@@ -1,0 +1,44 @@
+[versions]
+# Define the dependency versions
+kotlin = "1.8.00"
+compose = "1.2.1"
+kotlinxDateTime = "0.4.0"
+coroutines = "1.6.4"
+koin = "3.3.3"
+sqlDelight = "2.0.0-alpha05"
+decompose = "1.0.0"
+decompose-compose-experimental = "1.0.0-compose-experimental"
+
+compileSdk = "33"
+minSdk = "21"
+targetSdk = "33"
+versionCode = "1"
+versionName = "1.0"
+
+[libraries]
+# Define the libraries
+
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose_extensions = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose-compose-experimental" }
+
+koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+sqlDelight_runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
+sqlDelight_android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
+sqlDelight_native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+
+kotlinxDateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDateTime" }
+coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+compose_ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose_material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose_tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose_icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+
+[bundles]
+# Define bundles/groups of libraries
+compose = ["compose.ui", "compose.material", "compose.tooling", "compose.icons"]
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
