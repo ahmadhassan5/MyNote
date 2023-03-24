@@ -9,10 +9,7 @@
   "license": "",
   "summary": "Some description for the Shared Module",
   "vendored_frameworks": "build/cocoapods/framework/shared.framework",
-  "libraries": [
-    "c++",
-    "sqlite3"
-  ],
+  "libraries": "c++",
   "platforms": {
     "ios": "14.1"
   },

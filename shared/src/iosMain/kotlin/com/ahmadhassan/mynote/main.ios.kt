@@ -6,6 +6,7 @@ import com.ahmadhassan.mynote.ui.NoteRootComponent
 import com.ahmadhassan.mynote.di.initKoin
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import com.arkivanov.essenty.lifecycle.resume
 import platform.UIKit.UIViewController
 
 /**
@@ -20,6 +21,7 @@ fun MainViewController(): UIViewController {
         NoteRootComponent(
             componentContext = DefaultComponentContext(lifecycle = LifecycleRegistry())
         )
+     LifecycleRegistry().resume()
 
     return Application("My iOS") {
         NoteRoot(rootComponent)

@@ -4,11 +4,11 @@ import com.ahmadhassan.mynote.domain.note.Note
 import com.ahmadhassan.mynote.domain.note.NoteDataSource
 import com.ahmadhassan.mynote.domain.note.SearchNotes
 import com.arkivanov.decompose.ComponentContext
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import com.arkivanov.essenty.lifecycle.Lifecycle
+import com.arkivanov.essenty.lifecycle.doOnDestroy
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.cancel
 
 /**
  * Created by Ahmad Hassan on 11/12/2022.
@@ -20,8 +20,7 @@ class NoteListViewModelComponent constructor(
     private val onAddORItemClicked: (Long?) -> Unit
 ): ComponentContext by componentContext {
 
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-
+    private val viewModelScope = CoroutineScope(Dispatchers.Main.immediate)
     private val searchNotes = SearchNotes()
 
     private val notes = MutableStateFlow(emptyList<Note>())
@@ -35,6 +34,10 @@ class NoteListViewModelComponent constructor(
             isSearchActive = isSearchActive
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteListState())
+
+    init {
+        lifecycle.doOnDestroy(viewModelScope::cancel)
+    }
 
     fun loadNotes() {
         viewModelScope.launch {

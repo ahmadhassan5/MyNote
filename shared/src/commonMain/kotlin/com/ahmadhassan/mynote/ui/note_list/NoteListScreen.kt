@@ -44,7 +44,7 @@ internal fun NoteListScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    viewModel.onAddORItemClicked(-1)
+                    viewModel.onAddORItemClicked(null)
                 },
                 backgroundColor = Color.Black,
             ) {

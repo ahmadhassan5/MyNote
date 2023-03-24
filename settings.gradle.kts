@@ -23,4 +23,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyNote"
 include(":androidApp")
+include(":desktopApp")
 include(":shared")

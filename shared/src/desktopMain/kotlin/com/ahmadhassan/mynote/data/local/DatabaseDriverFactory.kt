@@ -1,7 +1,7 @@
 package com.ahmadhassan.mynote.data.local
 
 import app.cash.sqldelight.db.SqlDriver
-import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import com.ahmadhassan.mynote.NoteDatabase
 import org.koin.core.scope.Scope
 
@@ -10,5 +10,7 @@ import org.koin.core.scope.Scope
  */
 
 actual fun Scope.createDriver(): SqlDriver {
-    return NativeSqliteDriver(NoteDatabase.Schema, "note.db")
+    val driver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
+    NoteDatabase.Schema.create(driver)
+    return driver
 }

@@ -40,7 +40,6 @@ kotlin {
                 implementation(deps.sqlDelight.runtime)
                 api(deps.decompose)
                 implementation(deps.decompose.extensions)
-                implementation(deps.coroutinesCore)
             }
         }
         val commonTest by getting {
@@ -79,6 +78,8 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
+                implementation(deps.sqlDelight.sqlite)
+                api(deps.coroutinesSwing)
             }
         }
     }
@@ -94,7 +95,7 @@ sqldelight {
 
 android {
     namespace = "com.ahmadhassan.mynote"
-    compileSdk = deps.versions.compileSdk.get().toInt()
+    compileSdkVersion(deps.versions.compileSdk.get().toInt())
     defaultConfig {
         minSdk = deps.versions.minSdk.get().toInt()
         targetSdk = deps.versions.targetSdk.get().toInt()

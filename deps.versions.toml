@@ -18,7 +18,7 @@ versionName = "1.0"
 [libraries]
 # Define the libraries
 
-decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose-compose-experimental" }
 decompose_extensions = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose-compose-experimental" }
 
 koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -27,9 +27,11 @@ koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 sqlDelight_runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 sqlDelight_android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
 sqlDelight_native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+sqlDelight_sqlite = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 
 kotlinxDateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDateTime" }
 coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 
 compose_ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose_material = { module = "androidx.compose.material:material", version.ref = "compose" }
