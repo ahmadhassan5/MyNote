@@ -4,6 +4,9 @@ import com.ahmadhassan.mynote.domain.note.NoteDataSource
 import com.ahmadhassan.mynote.NoteDatabase
 import com.ahmadhassan.mynote.data.local.createDriver
 import com.ahmadhassan.mynote.data.note.SQLDelightDataSource
+import com.ahmadhassan.mynote.ui.note_detail.NoteDetailViewModel
+import com.ahmadhassan.mynote.ui.note_list.NoteListViewModel
+import moe.tlaster.precompose.ui.viewModel
 import org.koin.dsl.module
 
 /**
@@ -13,4 +16,6 @@ import org.koin.dsl.module
 val databaseModule = module {
     single { createDriver() }
     single<NoteDataSource> { SQLDelightDataSource(NoteDatabase(driver = get())) }
+    single { NoteListViewModel(get()) }
+//    single { NoteDetailViewModel(3, get()) }
 }

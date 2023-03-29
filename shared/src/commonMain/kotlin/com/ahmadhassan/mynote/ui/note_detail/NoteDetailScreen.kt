@@ -2,10 +2,9 @@ package com.ahmadhassan.mynote.ui.note_detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,6 +15,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ahmadhassan.mynote.ui.note_list.NoteListViewModel
+import com.ahmadhassan.mynote.utils.get
+import moe.tlaster.precompose.ui.viewModel
 
 /**
  * Created by Ahmad Hassan on 13/12/2022.
@@ -23,21 +25,24 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 internal fun NoteDetailScreen(
-    component: NoteDetailComponent,
+    noteId: Long?,
+    onBackPressed: () -> Unit,
 ) {
-    
-    val state by component.state.collectAsState()
-    val noteHasBeenSaved by component.viewModel.hasNotBeenSaved.collectAsState()
-    
+    val viewModel = viewModel(NoteDetailViewModel::class, listOf(noteId)) {
+        NoteDetailViewModel(noteId, get())
+    }
+
+    val state by viewModel.state.collectAsState()
+    val noteHasBeenSaved by viewModel.hasNotBeenSaved.collectAsState()
+
     LaunchedEffect(key1 = noteHasBeenSaved) {
-        if (noteHasBeenSaved)
-            component.viewModel.onBackPressed()
+        if (noteHasBeenSaved) onBackPressed()
     }
 
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = component.viewModel::saveNote,
+                onClick = viewModel::saveNote,
                 backgroundColor = Color.Black,
             ) {
                 Icon(
@@ -46,22 +51,27 @@ internal fun NoteDetailScreen(
                     tint = Color.White
                 )
             }
-        },
+        }, topBar = {
+            TopAppBar(elevation = 0.dp, backgroundColor = Color(state.color), title = {
+                Text("")
+            }, navigationIcon = {
+                IconButton(onClick = onBackPressed) {
+                    Icon(Icons.Default.ArrowBack, "", tint = Color.White)
+                }
+            })
+        }
     ) { padding ->
         Column(
-            modifier = Modifier
-                .background(Color(state.color))
-                .fillMaxSize()
-                .padding(padding)
+            modifier = Modifier.background(Color(state.color)).fillMaxSize().padding(padding)
                 .padding(16.dp)
         ) {
             TransparentHintTextField(
                 text = state.title,
                 hint = "Enter a Title...",
                 isHintVisible = state.isTitleHintVisible,
-                onValueChanged = component.viewModel::onTitleChanged,
+                onValueChanged = viewModel::onTitleChanged,
                 onFocusChanged = {
-                    component.viewModel.onTitleFocusChanged(it.isFocused)
+                    viewModel.onTitleFocusChanged(it.isFocused)
                 },
                 isSingleLine = true,
                 textStyle = TextStyle(fontSize = 20.sp)
@@ -71,14 +81,14 @@ internal fun NoteDetailScreen(
                 text = state.content,
                 hint = "Enter some content...",
                 isHintVisible = state.isContentHintVisible,
-                onValueChanged = component.viewModel::onContentChanged,
+                onValueChanged = viewModel::onContentChanged,
                 onFocusChanged = {
-                    component.viewModel.onContentFocusChanged(it.isFocused)
+                    viewModel.onContentFocusChanged(it.isFocused)
                 },
                 textStyle = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.weight(1f )
+                modifier = Modifier.weight(1f)
             )
         }
     }
-    
+
 }

@@ -38,8 +38,10 @@ kotlin {
                 implementation(deps.koin.core)
                 implementation(deps.kotlinxDateTime)
                 implementation(deps.sqlDelight.runtime)
-                api(deps.decompose)
-                implementation(deps.decompose.extensions)
+//                api(deps.decompose)
+//                implementation(deps.decompose.extensions)
+                api(deps.preCompose)
+//                api(deps.koinCompose)
             }
         }
         val commonTest by getting {
@@ -101,7 +103,7 @@ android {
         targetSdk = deps.versions.targetSdk.get().toInt()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_16
+        targetCompatibility = JavaVersion.VERSION_16
     }
 }

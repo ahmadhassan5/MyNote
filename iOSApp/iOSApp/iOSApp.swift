@@ -6,10 +6,10 @@ struct iOSApp: App {
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
-			.onTapGesture {
+			/* .onTapGesture {
                                 // Hide keyboard on tap outside of TextField
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            }
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            } */
 		}
 	}
 }

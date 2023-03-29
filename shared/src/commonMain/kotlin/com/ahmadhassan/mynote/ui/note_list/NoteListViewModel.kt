@@ -3,29 +3,33 @@ package com.ahmadhassan.mynote.ui.note_list
 import com.ahmadhassan.mynote.domain.note.Note
 import com.ahmadhassan.mynote.domain.note.NoteDataSource
 import com.ahmadhassan.mynote.domain.note.SearchNotes
-import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.essenty.lifecycle.Lifecycle
-import com.arkivanov.essenty.lifecycle.doOnDestroy
-import kotlinx.coroutines.*
+import com.ahmadhassan.mynote.utils.UIEvent
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.flow.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import moe.tlaster.precompose.viewmodel.ViewModel
+import moe.tlaster.precompose.viewmodel.viewModelScope
 
 /**
  * Created by Ahmad Hassan on 11/12/2022.
  */
 
-class NoteListViewModelComponent constructor(
-    private val componentContext: ComponentContext,
+class NoteListViewModel constructor(
     private val noteDataSource: NoteDataSource,
-    private val onAddORItemClicked: (Long?) -> Unit
-): ComponentContext by componentContext {
+): ViewModel() {
 
-    private val viewModelScope = CoroutineScope(Dispatchers.Main.immediate)
     private val searchNotes = SearchNotes()
 
     private val notes = MutableStateFlow(emptyList<Note>())
     private val searchText = MutableStateFlow("")
     private val isSearchActive = MutableStateFlow(false)
+
+    private var deletedNote:Note? = null
+
+    private val _uiEvent = Channel<UIEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     val state = combine(notes, searchText, isSearchActive) {notes, searchText, isSearchActive ->
         NoteListState(
@@ -34,10 +38,6 @@ class NoteListViewModelComponent constructor(
             isSearchActive = isSearchActive
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteListState())
-
-    init {
-        lifecycle.doOnDestroy(viewModelScope::cancel)
-    }
 
     fun loadNotes() {
         viewModelScope.launch {
@@ -55,13 +55,18 @@ class NoteListViewModelComponent constructor(
             searchText.value = ""
     }
 
-    fun onAddORItemClicked(id: Long?) {
-        onAddORItemClicked.invoke(id)
+    fun deleteNote(note: Note) {
+        viewModelScope.launch {
+            deletedNote = note
+            noteDataSource.deleteNote(note.id!!)
+            loadNotes()
+                _uiEvent.send(UIEvent.ShowSnackBar("Note deleted", "Undo"))
+        }
     }
 
-    fun deleteNote(id: Long) {
+    fun undoDelete() {
         viewModelScope.launch {
-            noteDataSource.deleteNote(id)
+            noteDataSource.insertNote(deletedNote!!)
             loadNotes()
         }
     }

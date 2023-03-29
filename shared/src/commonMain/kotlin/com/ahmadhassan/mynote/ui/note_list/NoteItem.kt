@@ -59,7 +59,7 @@ internal fun NoteItem(
                 imageVector = Icons.Default.Close,
                 contentDescription = "Delete Note",
                 modifier = Modifier
-                    .clickable(MutableInteractionSource(), null) { 
+                    .clickable(MutableInteractionSource(), null) {
                         onDeleteClick()
                     }
             )
@@ -72,7 +72,7 @@ internal fun NoteItem(
             color = Color.DarkGray,
             modifier = Modifier.align(Alignment.End)
         )
-        
+
     }
 
 }
