@@ -13,11 +13,15 @@ MyNote is KotlinMultiplatform project with 99% shared code, built with Compose m
 - [PreCompose](https://github.com/Tlaster/PreCompose): for navigation, ViewModel.
 - [SQLDelight](https://github.com/cashapp/sqldelight): for storage.
 - [Koin](https://github.com/InsertKoinIO/koin): for dependency injection.
+- Version Catalogue: for dependency management.
 
-## Navigation
+## Shared Navigation and ViewModel
 There are two branches here.
 - main: [Decompose](https://github.com/arkivanov/Decompose) is used for navigation and ViewModel functionality.
 - with_precompose: [PreCompose](https://github.com/Tlaster/PreCompose) is used for navigation, ViewModel.
+
+## Want to create your own apps, just clone this template and don’t worry about configuration issues, and get started:
+https://github.com/ahmadhassan5/MyComposeMultiplatformTemplate
 
 ## Authors
 
