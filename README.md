@@ -21,7 +21,7 @@ There are two branches here.
 - with_precompose: [PreCompose](https://github.com/Tlaster/PreCompose) is used for navigation, ViewModel.
 
 ## Want to create your own apps, just clone this template and don’t worry about configuration issues, and get started:
-- [ComposeTemplate] (https://github.com/ahmadhassan5/MyComposeMultiplatformTemplate)
+- [ComposeTemplate](https://github.com/ahmadhassan5/MyComposeMultiplatformTemplate)
 
 ## Authors
 
