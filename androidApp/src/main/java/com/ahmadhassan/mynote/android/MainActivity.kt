@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.ahmadhassan.mynote.Application
 import com.ahmadhassan.mynote.di.initKoin
+import com.ahmadhassan.mynote.ui.NoteRoot
 import moe.tlaster.precompose.lifecycle.PreComposeActivity
 import moe.tlaster.precompose.lifecycle.setContent
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +20,7 @@ class MainActivity : PreComposeActivity() {
         }
 
         setContent {
-            Application()
+            NoteRoot()
         }
     }
 

@@ -26,7 +26,7 @@ import com.ahmadhassan.mynote.domain.note.Note
  */
 
 @Composable
-internal fun NoteItem(
+fun NoteItem(
     note: Note,
     backgroundColor: Color,
     onNoteClick: () -> Unit,

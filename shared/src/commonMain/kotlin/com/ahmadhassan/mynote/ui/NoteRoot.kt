@@ -13,7 +13,7 @@ import moe.tlaster.precompose.navigation.rememberNavigator
  */
 
 @Composable
-internal fun NoteRoot() {
+fun NoteRoot() {
 
     val navigator = rememberNavigator()
     MyApplicationTheme {

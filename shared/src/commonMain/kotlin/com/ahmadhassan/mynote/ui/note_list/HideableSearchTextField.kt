@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
  */
 
 @Composable
-internal fun HideableSearchTextField(
+fun HideableSearchTextField(
     text: String,
     onTextChange: (String) -> Unit,
     isSearchActive: Boolean,

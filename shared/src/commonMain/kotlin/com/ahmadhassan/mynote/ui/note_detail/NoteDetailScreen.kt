@@ -24,7 +24,7 @@ import moe.tlaster.precompose.ui.viewModel
  */
 
 @Composable
-internal fun NoteDetailScreen(
+fun NoteDetailScreen(
     noteId: Long?,
     onBackPressed: () -> Unit,
 ) {

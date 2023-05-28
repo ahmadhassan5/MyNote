@@ -31,7 +31,7 @@ import moe.tlaster.precompose.ui.viewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun NoteListScreen(
+fun NoteListScreen(
     onAddORItemClicked: (Long) -> Unit,
 ) {
     val viewModel = viewModel(NoteListViewModel::class) {
