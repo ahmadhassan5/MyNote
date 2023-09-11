@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.ahmadhassan.mynote.utils.UIEvent
 import com.ahmadhassan.mynote.utils.get
 import kotlinx.coroutines.flow.collectLatest
-import moe.tlaster.precompose.ui.viewModel
+import moe.tlaster.precompose.viewmodel.viewModel
 
 /**
  * Created by Ahmad Hassan on 12/12/2022.

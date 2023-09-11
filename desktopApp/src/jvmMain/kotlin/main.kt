@@ -1,6 +1,6 @@
 import androidx.compose.ui.window.application
-import com.ahmadhassan.mynote.Application
 import com.ahmadhassan.mynote.di.initKoin
+import com.ahmadhassan.mynote.ui.NoteRoot
 import moe.tlaster.precompose.PreComposeWindow
 
 fun main() {
@@ -8,7 +8,7 @@ fun main() {
 
     application {
         PreComposeWindow(title = "My Note", onCloseRequest = ::exitApplication) {
-            Application()
+            NoteRoot()
         }
     }
 }

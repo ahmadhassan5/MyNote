@@ -1,10 +1,8 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(deps.plugins.jetBrains.compose)
 }
 
 //group = ""
@@ -12,9 +10,9 @@ plugins {
 
 kotlin {
     jvm {
-        compilations.all {
+        /*compilations.all {
             kotlinOptions.jvmTarget = "16"
-        }
+        }*/
         withJava()
     }
     sourceSets {

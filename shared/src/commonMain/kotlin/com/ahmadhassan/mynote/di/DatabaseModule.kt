@@ -1,12 +1,10 @@
 package com.ahmadhassan.mynote.di
 
-import com.ahmadhassan.mynote.domain.note.NoteDataSource
 import com.ahmadhassan.mynote.NoteDatabase
 import com.ahmadhassan.mynote.data.local.createDriver
 import com.ahmadhassan.mynote.data.note.SQLDelightDataSource
-import com.ahmadhassan.mynote.ui.note_detail.NoteDetailViewModel
+import com.ahmadhassan.mynote.domain.note.NoteDataSource
 import com.ahmadhassan.mynote.ui.note_list.NoteListViewModel
-import moe.tlaster.precompose.ui.viewModel
 import org.koin.dsl.module
 
 /**

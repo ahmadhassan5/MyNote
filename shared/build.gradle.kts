@@ -1,14 +1,14 @@
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
-    id("com.android.library")
-    id("org.jetbrains.compose")
-    id("app.cash.sqldelight")
+    alias(deps.plugins.jetBrains.compose)
+    alias(deps.plugins.android.library)
+    alias(deps.plugins.sqlDelight)
     id("kotlin-parcelize")
 }
 
 kotlin {
-    android()
+    androidTarget()
     jvm("desktop")
     ios()
     iosArm64()
@@ -23,7 +23,6 @@ kotlin {
         framework {
             baseName = "shared"
             isStatic = true
-            linkerOpts("-lsqlite3")
         }
     }
 
@@ -38,9 +37,10 @@ kotlin {
                 implementation(deps.koin.core)
                 implementation(deps.kotlinxDateTime)
                 implementation(deps.sqlDelight.runtime)
+                api(deps.preCompose)
+                api(deps.preComposeViewModel)
 //                api(deps.decompose)
 //                implementation(deps.decompose.extensions)
-                api(deps.preCompose)
 //                api(deps.koinCompose)
             }
         }
@@ -102,7 +102,7 @@ android {
         minSdk = deps.versions.minSdk.get().toInt()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_16
-        targetCompatibility = JavaVersion.VERSION_16
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

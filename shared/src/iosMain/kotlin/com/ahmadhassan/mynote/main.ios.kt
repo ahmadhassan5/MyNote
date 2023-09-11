@@ -12,7 +12,7 @@ import platform.UIKit.UIViewController
 fun MainViewController(): UIViewController {
 
     initKoin()
-    return PreComposeApplication("My iOS") {
+    return PreComposeApplication {
         NoteRoot()
     }
 }
